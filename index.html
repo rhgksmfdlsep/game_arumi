@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>아름이 뱃살 키우기</title>
+  <style>
+    body { text-align: center; font-family: Arial; margin-top: 50px; }
+    button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+    #fatImage {
+      margin-top: 30px;
+      width: 250px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>아름이 뱃살 키우기</h1>
+  <p>현재 뱃살: <span id="fat">0</span>g</p>
+  <button onclick="eat()">폭식하기</button>
+  <button onclick="upgrade()">폭식 강화 (100g)</button>
+  <div><img id="fatImage" src="arumi_stage_1.png" alt="아름이"></div>
+
+  <script>
+    let fat = 0;
+    let fatGain = 10;
+    const image = document.getElementById("fatImage");
+
+    function eat() {
+      fat += fatGain;
+      document.getElementById("fat").innerText = fat;
+      evolve();
+    }
+
+    function upgrade() {
+      if (fat >= 100) {
+        fat -= 100;
+        fatGain *= 2;
+        document.getElementById("fat").innerText = fat;
+        alert("폭식력이 강화되었다! 한 번에 " + fatGain + "g 증가!");
+        evolve();
+      } else {
+        alert("뱃살이 부족합니다! 더 먹어!");
+      }
+    }
+
+    function evolve() {
+      if (fat >= 1000) {
+        image.src = "arumi_stage_3.png";
+      } else if (fat >= 500) {
+        image.src = "arumi_stage_2.png";
+      } else {
+        image.src = "arumi_stage_1.png";
+      }
+    }
+  </script>
+</body>
+</html>
